@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>websocket test</title>
+</head>
+<body>
+<table>
+<tr>
+<td>
+浏览器发送的信息：
+<br>
+<textarea  rows="10" cols="50" id="msg">
+{"msgType":"sign_in", "path":"gps"}
+</textarea>
+
+</td>
+<td>
+
+<input type="button" value="发送" id="send" onclick="q()"/>
+</td>
+<td>
+服务器返回的信息：<br>
+<textarea  rows="10" cols="50" id="show" ></textarea>
+</td>
+</tr>
+
+</table>
+
+
+
+<script>
+    var ws = null ;
+    var target="ws://localhost:8080/jbizdemo/zws";
+    if ('WebSocket' in window) {
+        ws = new WebSocket(target);
+    } else if ('MozWebSocket' in window) {
+        ws = new MozWebSocket(target);
+    } else {
+        alert('WebSocket is not supported by this browser.');
+    }
+
+    ws.onopen = function(obj){
+        console.info('open') ;
+        console.info(obj) ;
+    } ;
+    
+    ws.onclose = function (obj) {
+        console.info('close') ;
+        console.info(obj) ;
+    } ;
+    ws.onmessage = function(obj){
+        console.info(obj) ;
+        document.getElementById('show').value=obj.data;
+    } ;
+    function q(){
+    	ws.send(document.getElementById('msg').value);
+    }
+</script>
+</body>
+</html>
