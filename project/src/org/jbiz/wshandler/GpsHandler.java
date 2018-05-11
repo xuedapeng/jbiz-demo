@@ -5,6 +5,7 @@ import org.jbiz.wshandler.base.BaseHandler;
 import org.jbiz.wshandler.param.GpsHandlerParam;
 
 import fw.jbiz.common.helper.BeanHelper;
+import fw.jbiz.ext.websocket.ZWsEventChannel;
 import fw.jbiz.ext.websocket.ZWsHandlerParam;
 import fw.jbiz.ext.websocket.annotation.WsHandler;
 import fw.jbiz.logic.interfaces.IResponseObject;
@@ -28,12 +29,13 @@ public class GpsHandler extends BaseHandler {
 		GpsHandlerParam myParam = (GpsHandlerParam)handlerParam;
 		
 		logger.info(BeanHelper.dumpBean(handlerParam));
-		response.add(IResponseObject.RSP_KEY_STATUS, IResponseObject.RSP_CD_INFO);
+		response.add(IResponseObject.RSP_KEY_STATUS, IResponseObject.RSP_CD_OK);
 		response.add(IResponseObject.RSP_KEY_MSG, "this is from respond()");
 		response.add("latitude", myParam.getLatitude());
 		response.add("longitude", myParam.getLongitude());
 
-		
+		// 发布
+		ZWsEventChannel.publish("tom", response.add("from", "publish"));
 		
 	}
 
@@ -41,6 +43,9 @@ public class GpsHandler extends BaseHandler {
 	public void onSignIn(ZWsHandlerParam handlerParam, IResponseObject response) {
 
 		logger.info(BeanHelper.dumpBean(handlerParam));
+		
+		// 订阅
+		ZWsEventChannel.subscribe("tom", this.getSession().getId());
 		
 		response.add("status", 1);
 		response.add("msg", "sign in OK");
