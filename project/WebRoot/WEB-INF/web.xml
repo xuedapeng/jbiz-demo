@@ -12,14 +12,21 @@
   <servlet>
     <description>JAX-RS Tools Generated - Do not modify</description>
     <servlet-name>JAX-RS Servlet</servlet-name>
-    <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+    <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class> <init-param>  
+      <param-name>com.sun.jersey.config.property.packages</param-name>  
+      <param-value>org.jbiz.action</param-value>  
+    </init-param>  
     <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
     <servlet-name>JAX-RS Servlet</servlet-name>
-    <url-pattern>/jaxrs/*</url-pattern>
     <url-pattern>/api/*</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>initStart</servlet-name>
+    <servlet-class>org.jbiz.service.ServiceServlet</servlet-class>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
   <filter>
     <filter-name>crossDomainFilter</filter-name>
     <filter-class>fw.jbiz.ext.filter.CrossDomainFilter</filter-class>

@@ -1,4 +1,4 @@
-package com.my.logic;
+package org.jbiz.logic;
 
 import javax.persistence.EntityManager;
 

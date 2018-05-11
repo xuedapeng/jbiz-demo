@@ -1,4 +1,4 @@
-package com.my.action;
+package org.jbiz.action;
 
 import fw.jbiz.action.ZAction;
 

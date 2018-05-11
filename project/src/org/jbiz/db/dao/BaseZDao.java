@@ -1,4 +1,4 @@
-package com.my.db.dao;
+package org.jbiz.db.dao;
 
 import javax.persistence.EntityManager;
 
