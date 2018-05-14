@@ -5,6 +5,7 @@ import org.jbiz.wshandler.base.BaseHandler;
 import org.jbiz.wshandler.param.GpsHandlerParam;
 
 import fw.jbiz.common.helper.BeanHelper;
+import fw.jbiz.ext.json.ZGsonObject;
 import fw.jbiz.ext.websocket.ZWsEventChannel;
 import fw.jbiz.ext.websocket.ZWsHandlerParam;
 import fw.jbiz.ext.websocket.annotation.WsHandler;
@@ -29,13 +30,19 @@ public class GpsHandler extends BaseHandler {
 		GpsHandlerParam myParam = (GpsHandlerParam)handlerParam;
 		
 		logger.info(BeanHelper.dumpBean(handlerParam));
-		response.add(IResponseObject.RSP_KEY_STATUS, IResponseObject.RSP_CD_OK);
-		response.add(IResponseObject.RSP_KEY_MSG, "this is from respond()");
-		response.add("latitude", myParam.getLatitude());
-		response.add("longitude", myParam.getLongitude());
-
-		// 发布
-		ZWsEventChannel.publish("tom", response.add("from", "publish"));
+		response.add(IResponseObject.RSP_KEY_STATUS, IResponseObject.RSP_CD_OK)
+			.add(IResponseObject.RSP_KEY_MSG, "this is from respond()")
+			.add("latitude", myParam.getLatitude())
+			.add("longitude", myParam.getLongitude());
+		// 以上，自动respond 到客户端
+		
+		// 以下，通过订阅／发布 到客户端
+		IResponseObject response2 = new ZGsonObject();
+		response2.add(IResponseObject.RSP_KEY_STATUS, IResponseObject.RSP_CD_OK)
+			.add(IResponseObject.RSP_KEY_MSG, "this is from publish")
+			.add("latitude", myParam.getLatitude())
+			.add("longitude", myParam.getLongitude());
+		ZWsEventChannel.publish("tom", response2);
 		
 	}
 
