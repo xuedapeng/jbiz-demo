@@ -17,9 +17,11 @@ var _ws_status = "close";
 
 var searchData = function() {
 
-      var url = "http://service.bz12306.com:8081/jbizdemo/api/gps/gpsRetrieve.do";
-      var data = {"carId":1, "avgField":"hour"};
-  	  $.ajax({
+	//var url = "../api/gps/gpsRetrieve.do";
+    var url = "http://service.bz12306.com:8081/jbizdemo/api/gps/gpsRetrieve.do";
+    var data = {"carId":1, "avgField":"hour"};
+  	  
+      $.ajax({
 
   	        type    : "POST",
   	        url     : url,

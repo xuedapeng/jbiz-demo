@@ -8,6 +8,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 
 import org.apache.log4j.Logger;
+import org.jbiz.demo.logic.LoginLogic;
+import org.jbiz.demo.logic.param.LoginLogicParam;
 
 
 @Produces("application/json;charset=UTF-8")
@@ -23,7 +25,8 @@ public class LoginAction extends BaseZAction {
 			@FormParam("password") String password,
 			@Context HttpServletRequest request) {
 		
-		logger.info("XXX");
-		return "{}";
+		LoginLogicParam logicParam = new LoginLogicParam(null, null, request);
+		
+		return new LoginLogic().process(logicParam);
 	}
 }
