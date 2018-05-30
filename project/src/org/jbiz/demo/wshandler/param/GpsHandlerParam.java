@@ -1,9 +1,9 @@
-package org.jbiz.wshandler.param;
+package org.jbiz.demo.wshandler.param;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import org.jbiz.wshandler.base.BaseHandlerParam;
+import org.jbiz.demo.wshandler.base.BaseHandlerParam;
 
 import fw.jbiz.common.helper.JsonHelper;
 import fw.jbiz.ext.websocket.ZWsHandlerParam;
@@ -12,6 +12,7 @@ public class GpsHandlerParam extends BaseHandlerParam {
 
 	private String latitude;
 	private String longitude;
+	private Integer carId;
 	
 	@Override
 	public ZWsHandlerParam fromJson(String jsonMsg) {
@@ -19,6 +20,13 @@ public class GpsHandlerParam extends BaseHandlerParam {
 		Map<String, Object> map = JsonHelper.jsonStr2Map(jsonMsg);
 		latitude = (String)map.get("latitude");
 		longitude = (String)map.get("longitude");
+		String carIdStr = (String)map.get("carId");
+		
+		if (carIdStr != null) {
+			carId = Integer.valueOf(carIdStr);
+		}
+		
+		
 		
 		return this;
 	}
@@ -48,4 +56,13 @@ public class GpsHandlerParam extends BaseHandlerParam {
 		this.longitude = longitude;
 	}
 
+	public Integer getCarId() {
+		return carId;
+	}
+
+	public void setCarId(Integer carId) {
+		this.carId = carId;
+	}
+
+	
 }

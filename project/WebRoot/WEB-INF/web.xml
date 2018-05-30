@@ -14,7 +14,7 @@
     <servlet-name>JAX-RS Servlet</servlet-name>
     <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class> <init-param>  
       <param-name>com.sun.jersey.config.property.packages</param-name>  
-      <param-value>org.jbiz.action</param-value>  
+      <param-value>org.jbiz.demo.action</param-value>  
     </init-param>  
     <load-on-startup>1</load-on-startup>
   </servlet>
@@ -24,7 +24,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>initStart</servlet-name>
-    <servlet-class>org.jbiz.service.ServiceServlet</servlet-class>
+    <servlet-class>org.jbiz.demo.service.ServiceServlet</servlet-class>
     <load-on-startup>2</load-on-startup>
   </servlet>
   <filter>

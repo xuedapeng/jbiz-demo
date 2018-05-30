@@ -1,4 +1,4 @@
-package org.jbiz.action;
+package org.jbiz.demo.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.FormParam;
@@ -24,6 +24,6 @@ public class LoginAction extends BaseZAction {
 			@Context HttpServletRequest request) {
 		
 		logger.info("XXX");
-		return "todo:XXX";
+		return "{}";
 	}
 }

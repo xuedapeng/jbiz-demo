@@ -1,4 +1,4 @@
-package org.jbiz.db.bean;
+package org.jbiz.demo.db.bean;
 
 import fw.jbiz.db.ZEntity;
 
