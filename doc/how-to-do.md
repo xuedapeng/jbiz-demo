@@ -16,7 +16,7 @@ jbiz 采用 path-handler映射模型，jbiz解析websocket请求的path地址，
 
 ① 客户端（html5、android等）发起websocket连接
 
-   		ws://xxx.com/zws
+   	ws://xxx.com/zws
 
 ↓
 
@@ -26,32 +26,42 @@ jbiz 采用 path-handler映射模型，jbiz解析websocket请求的path地址，
 
 ③ 客户端发送一条登录消息（json格式），包含path，以及身份信息
 
-   		{"msgType":"sign_in", "path":"gps", "userId":"xxx", "apiKey":"yyy"}
+   	{"msgType":"sign_in", "path":"gps", "userId":"xxx", "apiKey":"yyy"}
 
 ↓
 
 ④ 服务端生成path对应的handler，并依次调用handler的如下方法：
+   
 
-			auth(ZWsHandlerParam handlerParam, IResponseObject response);
-			onSignIn(ZWsHandlerParam handlerParam, IResponseObject response);
+	auth(ZWsHandlerParam handlerParam, IResponseObject response);
+	onSignIn(ZWsHandlerParam handlerParam, IResponseObject response);
+
+			
+			
+   path-handler通过Handler类的注解建立映射关系。
+   		
+   	@WsHandler(path="gps")
+	public class GpsHandler extends ZWsHandler {
 
 ↓
 
 ⑤ 客户端收到登录成功消息，开始处理业务消息
 
-		{"longitude":"123.456", "latitude":"78.90"}
+	{"longitude":"123.456", "latitude":"78.90"}
 
 ↓
 
 ⑥ handler的onMessage方法处理业务消息
 
-		validate(ZWsHandlerParam handlerParam, IResponseObject response);
-		onMessage(ZWsHandlerParam handlerParam, IResponseObject response);
+	validate(ZWsHandlerParam handlerParam, IResponseObject response);
+	onMessage(ZWsHandlerParam handlerParam, IResponseObject response);
+
+↓
 
 ⑦　服务端主动向客户端发送消息
 
-		ZWsHandlerManager.broadcast(IResponseObject response);
-		ZWsHandlerManager.send(IResponseObject response, String sessionId);
+	ZWsHandlerManager.broadcast(IResponseObject response);
+	ZWsHandlerManager.send(IResponseObject response, String sessionId);
 		
 
 ### 编程示例
@@ -141,3 +151,14 @@ jbiz 采用 path-handler映射模型，jbiz解析websocket请求的path地址，
 			{"longitude":"123.456", "latitude":"78.90"}
 			
 	5. 观察浏览器控制台的输出信息。
+	
+
+### 下载
+	
+* jbiz-demo：
+	
+	https://github.com/xuedapeng/jbiz-demo/releases/tag/v0.1
+		
+* jbiz-core:
+	
+	https://github.com/xuedapeng/jbiz-core/releases/tag/1.1

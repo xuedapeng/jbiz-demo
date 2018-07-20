@@ -32,7 +32,7 @@
     		
     * t_location(将来使用mongoDb)
     	
-    		id, latitude, longitude, timestamp,
+    		id, carId, latitude, longitude, timestamp,
     		createTime, updateTime
     		
 	

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ECharts</title>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <!-- 引入 echarts.js -->
+    <script src="echarts.min.js"></script>
+    <script src="avgHour.js"></script>
+</head>
+<body>
+
+    <div class="signal" style="color:gray;">
+      <label  style="font-size:1.5em">■ </label>
+      <label id="signal_value" style="font-size:1em"></label>
+    </div>
+    <div id="instant" style="width: 500px;height:300px;"></div>
+
+    (<label id="signal_countdown" style="font-size:1em"></label>)
+
+    <div id="history" style="width: 540px;height:400px;" ></div>
+    <br/>
+    <hr/>
+    <div id="message" style="width: 300px;height:20px;"></div>
+
+</body>
+
+</html>

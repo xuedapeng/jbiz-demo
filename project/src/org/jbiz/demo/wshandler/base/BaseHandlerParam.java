@@ -1,4 +1,4 @@
-package org.jbiz.wshandler.base;
+package org.jbiz.demo.wshandler.base;
 
 
 import fw.jbiz.common.helper.BeanHelper;
